@@ -33,7 +33,12 @@ public class MainArray {
                 case "save":
                     resume = new Resume();
                     resume.setUuid(uuid);
-                    ARRAY_STORAGE.save(resume);
+                    try {
+                        ARRAY_STORAGE.save(resume);
+                    } catch(IndexOutOfBoundsException e) {
+                        System.out.println("Array capacity is full. In order to save resume" +
+                                " you should delete at least one");
+                    }
                     printAll();
                     break;
                 case "delete":

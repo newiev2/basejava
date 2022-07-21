@@ -18,12 +18,16 @@ public class MainTestArrayStorage {
         Resume resume6 = new Resume();
         resume6.setUuid("uuid6");
 
-        ARRAY_STORAGE.save(resume1);
-        ARRAY_STORAGE.save(resume2);
-        ARRAY_STORAGE.save(resume3);
-        ARRAY_STORAGE.save(resume4);
-        ARRAY_STORAGE.save(resume5);
-        ARRAY_STORAGE.save(resume6);
+        try {
+            ARRAY_STORAGE.save(resume1);
+            ARRAY_STORAGE.save(resume2);
+            ARRAY_STORAGE.save(resume3);
+            ARRAY_STORAGE.save(resume4);
+            ARRAY_STORAGE.save(resume5);
+            ARRAY_STORAGE.save(resume6);
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("Array capacity is full. In order to save resume you should delete at least one");
+        }
 
         System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid3"));
         System.out.println("Size: " + ARRAY_STORAGE.size());

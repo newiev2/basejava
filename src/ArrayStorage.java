@@ -11,10 +11,12 @@ public class ArrayStorage {
     }
 
     void save(Resume resume) {
-        for(int i = 0; i < storage.length; i++) {
-            if(storage[i] == null) {
+        for(int i = 0; i <= size(); i++) {
+            if(i == size()) {
                 storage[i] = resume;
                 break;
+            } else if(size() + 1 == storage.length) {
+                throw new IndexOutOfBoundsException();
             }
         }
     }
