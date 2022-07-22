@@ -28,7 +28,7 @@ public class MainArray {
                     printAll();
                     break;
                 case "size":
-                    System.out.println(ARRAY_STORAGE.size());
+                    System.out.println(ARRAY_STORAGE.getSize());
                     break;
                 case "save":
                     resume = new Resume();
@@ -38,11 +38,17 @@ public class MainArray {
                     } catch(IndexOutOfBoundsException e) {
                         System.out.println("Array capacity is full. In order to save resume" +
                                 " you should delete at least one");
+                    } catch(IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
                     }
                     printAll();
                     break;
                 case "delete":
-                    ARRAY_STORAGE.delete(uuid);
+                    try {
+                        ARRAY_STORAGE.delete(uuid);
+                    } catch(IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
                     printAll();
                     break;
                 case "get":

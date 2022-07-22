@@ -27,10 +27,12 @@ public class MainTestArrayStorage {
             ARRAY_STORAGE.save(resume6);
         } catch(IndexOutOfBoundsException e) {
             System.out.println("Array capacity is full. In order to save resume you should delete at least one");
+        } catch (IllegalArgumentException e1) {
+            System.out.println(e1.getMessage());
         }
 
         System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid3"));
-        System.out.println("Size: " + ARRAY_STORAGE.size());
+        System.out.println("Size: " + ARRAY_STORAGE.getSize());
 
         try {
             System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
@@ -44,7 +46,7 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.clear();
         printAll();
 
-        System.out.println("Size: " + ARRAY_STORAGE.size());
+        System.out.println("Size: " + ARRAY_STORAGE.getSize());
     }
 
     static void printAll() {

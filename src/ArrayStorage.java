@@ -4,25 +4,31 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[10000];
+    private int size;
+
+    public int getSize() {
+        return size;
+    }
 
     public void clear() {
-        Arrays.fill(storage,0, size(), null);
+        Arrays.fill(storage,0, size, null);
+        size = 0;
     }
 
     void save(Resume resume) {
-        for(int i = 0; i <= size(); i++) {
-            if(i == size()) {
-                storage[i] = resume;
-                break;
-            } else if(size() + 1 == storage.length) {
-                throw new IndexOutOfBoundsException();
-            }
+        if(size == storage.length) {
+            throw new IndexOutOfBoundsException();
         }
+        if(isExisted(resume)) {
+            throw new IllegalArgumentException("Resume with such uuid already exists");
+        }
+        storage[size] = resume;
+        size++;
     }
 
     public Resume get(String uuid) {
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < size; i++) {
             if(storage[i].toString().equals(uuid)) {
                 return storage[i];
             }
@@ -31,28 +37,14 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        boolean isSorted = false;
-        for(int i = 0; i < size(); i++) {
+        for(int i = 0; i < size; i++) {
             if(storage[i].toString().equals(uuid)) {
-
-                // Check if target resume is very last
-                if(storage[i + 1] == null) {
-                    storage[i] = null;
-                    break;
-                }
-
-                // Sorting array to fill in "holes"
-                for(int j = i; j < size(); j++) {
-                    if(j == size() - 1) {
-                        storage[j] = null;
-                        isSorted = true;
-                        break;
-                    }
-                    storage[j] = storage[j + 1];
-                }
-                if(isSorted) {
-                    break;
-                }
+                storage[i] = null;
+                sort();
+                size--;
+                break;
+            } else if(!storage[i].toString().equals(uuid) && i == size - 1) {
+                throw new IllegalArgumentException("Resume with such uuid does not exist");
             }
         }
     }
@@ -61,20 +53,40 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        for(int i = 0; i < storage.length; i++) {
-            if(storage[i] == null) {
-                return Arrays.copyOf(storage, i);
-            }
-        }
-        return null;
+        return Arrays.copyOf(storage, size);
     }
 
-    public int size() {
-        for(int i = 0; i < storage.length; i++) {
-            if(storage[i] == null) {
-                return i;
+    private void sort() {
+        Resume[] storageCopy = Arrays.copyOf(storage, storage.length);
+        int count = 1;
+        int destIndex = 0;
+        int srcIndex;
+
+        for(int i = 0; i < size; i++) {
+            if(storageCopy[i] != null) {
+                srcIndex = i;
+                if(i < size - 1) {
+                    for(int j = i + 1; j < size; j++) {
+                        if(storageCopy[j] == null) {
+                            break;
+                        }
+                        count++;
+                    }
+                }
+                System.arraycopy(storageCopy, srcIndex, storage, destIndex, count);
+                destIndex += count;
+                i += count;
+                count = 1;
             }
         }
-        return 0;
+    }
+
+    private boolean isExisted(Resume resume) {
+        for(int i = 0; i < size; i++) {
+            if(storage[i].toString().equals(resume.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
