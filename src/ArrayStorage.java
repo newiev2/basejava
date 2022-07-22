@@ -17,14 +17,16 @@ public class ArrayStorage {
     }
 
     void save(Resume resume) {
+        if(size < storage.length && !isExisted(resume)) {
+            storage[size] = resume;
+            size++;
+        }
         if(size == storage.length) {
-            throw new IndexOutOfBoundsException();
+            System.out.println("Storage is out of capacity");
         }
         if(isExisted(resume)) {
-            throw new IllegalArgumentException("Resume with such uuid already exists");
+            System.out.println("Resume with such uuid already exists in storage");
         }
-        storage[size] = resume;
-        size++;
     }
 
     public Resume get(String uuid) {
@@ -39,12 +41,12 @@ public class ArrayStorage {
     public void delete(String uuid) {
         for(int i = 0; i < size; i++) {
             if(storage[i].toString().equals(uuid)) {
-                storage[i] = null;
-                sort();
+                storage[i] = storage[size - 1];
+                storage[size - 1] = null;
                 size--;
                 break;
             } else if(!storage[i].toString().equals(uuid) && i == size - 1) {
-                throw new IllegalArgumentException("Resume with such uuid does not exist");
+                System.out.println("Resume with such uuid does not exist");
             }
         }
     }
@@ -54,31 +56,6 @@ public class ArrayStorage {
      */
     public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
-    }
-
-    private void sort() {
-        Resume[] storageCopy = Arrays.copyOf(storage, storage.length);
-        int count = 1;
-        int destIndex = 0;
-        int srcIndex;
-
-        for(int i = 0; i < size; i++) {
-            if(storageCopy[i] != null) {
-                srcIndex = i;
-                if(i < size - 1) {
-                    for(int j = i + 1; j < size; j++) {
-                        if(storageCopy[j] == null) {
-                            break;
-                        }
-                        count++;
-                    }
-                }
-                System.arraycopy(storageCopy, srcIndex, storage, destIndex, count);
-                destIndex += count;
-                i += count;
-                count = 1;
-            }
-        }
     }
 
     private boolean isExisted(Resume resume) {
