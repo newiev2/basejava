@@ -33,7 +33,7 @@ public class ArrayStorage {
                 return storage[i];
             }
         }
-        throw new IllegalArgumentException("Resume with such uuid does not exist");
+        return null;
     }
 
     public void delete(String uuid) {
