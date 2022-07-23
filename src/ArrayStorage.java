@@ -17,15 +17,15 @@ public class ArrayStorage {
     }
 
     void save(Resume resume) {
-        if(size < storage.length && !isExisted(resume)) {
-            storage[size] = resume;
-            size++;
+        if(isExisted(resume)) {
+            System.out.println("Resume with such uuid already exists in storage");
         }
         if(size == storage.length) {
             System.out.println("Storage is out of capacity");
         }
-        if(isExisted(resume)) {
-            System.out.println("Resume with such uuid already exists in storage");
+        if(size < storage.length && !isExisted(resume)) {
+            storage[size] = resume;
+            size++;
         }
     }
 
