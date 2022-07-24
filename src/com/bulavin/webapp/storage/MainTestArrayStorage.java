@@ -1,5 +1,9 @@
+package com.bulavin.webapp.storage;
+
+import com.bulavin.webapp.model.Resume;
+
 /**
- * Test for your ArrayStorage implementation
+ * Test for your com.bulavin.webapp.storage.storage implementation
  */
 public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
@@ -12,33 +16,25 @@ public class MainTestArrayStorage {
         Resume resume3 = new Resume();
         resume3.setUuid("uuid3");
         Resume resume4 = new Resume();
-        resume4.setUuid("uuid4");
+        resume4.setUuid("uuid2");
         Resume resume5 = new Resume();
         resume5.setUuid("uuid5");
         Resume resume6 = new Resume();
         resume6.setUuid("uuid6");
 
-        try {
-            ARRAY_STORAGE.save(resume1);
-            ARRAY_STORAGE.save(resume2);
-            ARRAY_STORAGE.save(resume3);
-            ARRAY_STORAGE.save(resume4);
-            ARRAY_STORAGE.save(resume5);
-            ARRAY_STORAGE.save(resume6);
-        } catch(IndexOutOfBoundsException e) {
-            System.out.println("Array capacity is full. In order to save resume you should delete at least one");
-        } catch (IllegalArgumentException e1) {
-            System.out.println(e1.getMessage());
-        }
+        ARRAY_STORAGE.save(resume1);
+        ARRAY_STORAGE.save(resume2);
+        ARRAY_STORAGE.save(resume3);
+        ARRAY_STORAGE.save(resume4);
+        ARRAY_STORAGE.save(resume5);
+        ARRAY_STORAGE.save(resume6);
 
         System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid3"));
+        ARRAY_STORAGE.update("uuid3", "uuid18");
+        System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid18"));
         System.out.println("Size: " + ARRAY_STORAGE.getSize());
 
-        try {
-            System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
-        } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        //System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
         printAll();
         ARRAY_STORAGE.delete("uuid4");

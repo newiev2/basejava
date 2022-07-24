@@ -1,3 +1,5 @@
+package com.bulavin.webapp.model;
+
 /**
  * Initial resume class
  */

@@ -1,9 +1,14 @@
+package com.bulavin.webapp;
+
+import com.bulavin.webapp.storage.ArrayStorage;
+import com.bulavin.webapp.model.Resume;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Interactive test for ArrayStorage implementation
+ * Interactive test for com.bulavin.webapp.storage.storage implementation
  * (just run, no need to understand)
  */
 public class MainArray {
@@ -33,22 +38,11 @@ public class MainArray {
                 case "save":
                     resume = new Resume();
                     resume.setUuid(uuid);
-                    try {
-                        ARRAY_STORAGE.save(resume);
-                    } catch(IndexOutOfBoundsException e) {
-                        System.out.println("Array capacity is full. In order to save resume" +
-                                " you should delete at least one");
-                    } catch(IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    ARRAY_STORAGE.save(resume);
                     printAll();
                     break;
                 case "delete":
-                    try {
-                        ARRAY_STORAGE.delete(uuid);
-                    } catch(IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    ARRAY_STORAGE.delete(uuid);
                     printAll();
                     break;
                 case "get":
