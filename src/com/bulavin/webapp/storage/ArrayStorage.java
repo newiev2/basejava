@@ -25,7 +25,7 @@ public class ArrayStorage {
         if(size == STORAGE_LIMIT) {
             System.out.println("Storage is out of capacity");
         } else if(findIndex(resume.toString()) > -1) {
-            System.out.println("com.bulavin.webapp.model.Resume with uuid " + resume.toString() + " already exists");
+            System.out.println("Resume with uuid " + resume.toString() + " already exists");
         } else {
             storage[size] = resume;
             size++;
@@ -34,7 +34,7 @@ public class ArrayStorage {
 
     public Resume get(String uuid) {
         if(findIndex(uuid) == -1) {
-            System.out.println("com.bulavin.webapp.model.Resume with uuid " + uuid + " does not exist");
+            System.out.println("Resume with uuid " + uuid + " does not exist");
             return null;
         }
         return storage[findIndex(uuid)];
@@ -42,7 +42,7 @@ public class ArrayStorage {
 
     public void update(String targetUuid, String newUuid) {
         if(findIndex(targetUuid) == -1) {
-            System.out.println("com.bulavin.webapp.model.Resume with uuid " + targetUuid + " does not exist");
+            System.out.println("Resume with uuid " + targetUuid + " does not exist");
         } else {
             storage[findIndex(targetUuid)].setUuid(newUuid);
         }
@@ -50,7 +50,7 @@ public class ArrayStorage {
 
     public void delete(String uuid) {
         if(findIndex(uuid) == -1) {
-            System.out.println("com.bulavin.webapp.model.Resume with uuid " + uuid + " does not exist");
+            System.out.println("Resume with uuid " + uuid + " does not exist");
         } else {
             storage[findIndex(uuid)] = storage[size - 1];
             storage[size - 1] = null;
