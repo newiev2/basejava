@@ -22,10 +22,11 @@ public class ArrayStorage {
     }
 
     public void save(Resume resume) {
+        int index = findIndex(resume.toString());
         if(size == STORAGE_LIMIT) {
             System.out.println("Storage is out of capacity");
-        } else if(findIndex(resume.toString()) > -1) {
-            System.out.println("Resume with uuid " + resume.toString() + " already exists");
+        } else if(index > -1) {
+            System.out.println("Resume with uuid " + resume + " already exists");
         } else {
             storage[size] = resume;
             size++;
@@ -33,26 +34,29 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        if(findIndex(uuid) == -1) {
+        int index = findIndex(uuid);
+        if(index == -1) {
             System.out.println("Resume with uuid " + uuid + " does not exist");
             return null;
         }
-        return storage[findIndex(uuid)];
+        return storage[index];
     }
 
     public void update(String targetUuid, String newUuid) {
-        if(findIndex(targetUuid) == -1) {
+        int index = findIndex(targetUuid);
+        if(index == -1) {
             System.out.println("Resume with uuid " + targetUuid + " does not exist");
         } else {
-            storage[findIndex(targetUuid)].setUuid(newUuid);
+            storage[index].setUuid(newUuid);
         }
     }
 
     public void delete(String uuid) {
-        if(findIndex(uuid) == -1) {
+        int index = findIndex(uuid);
+        if(index == -1) {
             System.out.println("Resume with uuid " + uuid + " does not exist");
         } else {
-            storage[findIndex(uuid)] = storage[size - 1];
+            storage[index] = storage[size - 1];
             storage[size - 1] = null;
             size--;
         }
@@ -73,6 +77,4 @@ public class ArrayStorage {
         }
         return -1;
     }
-
-
 }
