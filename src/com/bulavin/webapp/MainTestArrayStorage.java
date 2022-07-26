@@ -1,12 +1,13 @@
-package com.bulavin.webapp.storage;
+package com.bulavin.webapp;
 
 import com.bulavin.webapp.model.Resume;
+import com.bulavin.webapp.storage.ArrayStorage;
 
 /**
  * Test for your com.bulavin.webapp.storage.storage implementation
  */
 public class MainTestArrayStorage {
-    static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+    private static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
 
     public static void main(String[] args) {
         Resume resume1 = new Resume();
