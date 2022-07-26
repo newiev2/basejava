@@ -2,25 +2,12 @@ package com.bulavin.webapp.storage;
 
 import com.bulavin.webapp.model.Resume;
 
-import java.util.Arrays;
-
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage implements Storage {
-    private final static int STORAGE_LIMIT = 10000;
-    private final Resume[] storage = new Resume[STORAGE_LIMIT];
-    private int size;
+public class ArrayStorage extends AbstractArrayStorage {
 
-    public int getSize() {
-        return size;
-    }
-
-    public void clear() {
-        Arrays.fill(storage,0, size, null);
-        size = 0;
-    }
-
+    @Override
     public void save(Resume resume) {
         int index = findIndex(resume.toString());
         if(size == STORAGE_LIMIT) {
@@ -33,15 +20,7 @@ public class ArrayStorage implements Storage {
         }
     }
 
-    public Resume get(String uuid) {
-        int index = findIndex(uuid);
-        if(index == -1) {
-            System.out.println("Resume with uuid " + uuid + " does not exist");
-            return null;
-        }
-        return storage[index];
-    }
-
+    @Override
     public void update(String targetUuid, String newUuid) {
         int index = findIndex(targetUuid);
         if(index == -1) {
@@ -51,6 +30,7 @@ public class ArrayStorage implements Storage {
         }
     }
 
+    @Override
     public void delete(String uuid) {
         int index = findIndex(uuid);
         if(index == -1) {
@@ -62,14 +42,8 @@ public class ArrayStorage implements Storage {
         }
     }
 
-    /**
-     * @return array, contains only Resumes in storage (without null)
-     */
-    public Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
-    }
-
-    private int findIndex(String uuid) {
+    @Override
+    protected int findIndex(String uuid)  {
         for(int i = 0; i < size; i++) {
             if(storage[i].toString().equals(uuid)) {
                 return i;
