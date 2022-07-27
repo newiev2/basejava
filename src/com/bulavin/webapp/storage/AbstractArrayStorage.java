@@ -10,16 +10,30 @@ public abstract class AbstractArrayStorage implements Storage {
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size;
 
-    public int getSize() {
+    public final int getSize() {
         return size;
     }
 
-    public void clear() {
+    public final void clear() {
         Arrays.fill(storage,0, size, null);
         size = 0;
     }
 
-    public Resume get(String uuid) {
+    public final void save(Resume resume) {
+        int index = findIndex(resume.getUuid());
+        if(size == STORAGE_LIMIT) {
+            System.out.println("Storage is out of capacity");
+        } else if(index >= 0) {
+            System.out.println("Resume with uuid " + resume + " already exists");
+        } else {
+            addElement(resume);
+            size++;
+        }
+    }
+
+    protected abstract void addElement(Resume resume);
+
+    public final Resume get(String uuid) {
         int index = findIndex(uuid);
         if(index < 0) {
             System.out.println("Resume with uuid " + uuid + " does not exist");
@@ -28,18 +42,34 @@ public abstract class AbstractArrayStorage implements Storage {
         return storage[index];
     }
 
-    /**
-     * @return array, contains only Resumes in storage (without null)
-     */
-    public Resume[] getAll() {
+    public final void update(String targetUuid, String newUuid) {
+        int index = findIndex(targetUuid);
+        if(index < 0) {
+            System.out.println("Resume with uuid " + targetUuid + " does not exist");
+        } else {
+            storage[index].setUuid(newUuid);
+        }
+    }
+
+    public final void delete(String uuid) {
+        int index = findIndex(uuid);
+        if(index < 0) {
+            System.out.println("Resume with uuid " + uuid + " does not exist");
+        } else {
+            fillPosition(index);
+            size--;
+        }
+    }
+
+    protected abstract void fillPosition(int index);
+
+    public final Resume[] getAll() {
         return Arrays.copyOf(storage, size);
     }
 
-    public abstract void save(Resume resume);
-
-    public abstract void update(String targetUuid, String newUuid);
-
-    public abstract void delete(String uuid);
-
-    protected abstract int findIndex(String uuid);
+    protected final int findIndex(String uuid) {
+        Resume key = new Resume();
+        key.setUuid(uuid);
+        return Arrays.binarySearch(storage, 0, size, key);
+    }
 }
