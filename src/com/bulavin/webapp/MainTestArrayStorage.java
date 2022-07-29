@@ -1,47 +1,44 @@
 package com.bulavin.webapp;
 
 import com.bulavin.webapp.model.Resume;
-import com.bulavin.webapp.storage.ArrayStorage;
+import com.bulavin.webapp.storage.AbstractArrayStorage;
+import com.bulavin.webapp.storage.SortedArrayStorage;
 
 /**
  * Test for your com.bulavin.webapp.storage.storage implementation
  */
 public class MainTestArrayStorage {
-    private static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+    private static final AbstractArrayStorage ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) {
         Resume resume1 = new Resume();
-        resume1.setUuid("uuid1");
+        resume1.setUuid("uuid7");
         Resume resume2 = new Resume();
-        resume2.setUuid("uuid2");
+        resume2.setUuid("uuid3");
         Resume resume3 = new Resume();
-        resume3.setUuid("uuid3");
+        resume3.setUuid("uuid5");
         Resume resume4 = new Resume();
         resume4.setUuid("uuid2");
         Resume resume5 = new Resume();
-        resume5.setUuid("uuid5");
-        Resume resume6 = new Resume();
-        resume6.setUuid("uuid6");
+        resume5.setUuid("uuid9");
 
         ARRAY_STORAGE.save(resume1);
         ARRAY_STORAGE.save(resume2);
         ARRAY_STORAGE.save(resume3);
         ARRAY_STORAGE.save(resume4);
         ARRAY_STORAGE.save(resume5);
-        ARRAY_STORAGE.save(resume6);
 
-        System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid3"));
-        ARRAY_STORAGE.update("uuid3", "uuid18");
-        System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid18"));
-        System.out.println("Size: " + ARRAY_STORAGE.getSize());
-
+        //ARRAY_STORAGE.update(resume1, "uuid2");
+        //System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid18"));
+        //System.out.println("Size: " + ARRAY_STORAGE.getSize());
         //System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
         printAll();
-        ARRAY_STORAGE.delete("uuid4");
-        printAll();
-        ARRAY_STORAGE.clear();
-        printAll();
+        //ARRAY_STORAGE.delete("uuid1");
+        //System.out.println("Get resume9: " + ARRAY_STORAGE.get("uuid9"));
+        //printAll();
+        //ARRAY_STORAGE.clear();
+        //printAll();
 
         System.out.println("Size: " + ARRAY_STORAGE.getSize());
     }
