@@ -40,10 +40,10 @@ public abstract class AbstractArrayStorage implements Storage {
         return storage[index];
     }
 
-    public final void update(Resume resume, String uuid) {
-        int index = findIndex(uuid);
+    public final void update(Resume resume) {
+        int index = findIndex(resume.getUuid());
         if (index < 0) {
-            System.out.println("Resume with uuid " + uuid + " does not exist");
+            System.out.println("Resume with uuid " + resume.getUuid() + " does not exist");
         } else {
             storage[index] = resume;
         }
