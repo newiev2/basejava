@@ -10,7 +10,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected void addElement(Resume resume, int index) {
         int posIndex = Math.abs(index) - 1;
         if (storage[posIndex] != null) {
-            System.arraycopy(storage, posIndex, storage, posIndex + 1, size - posIndex + 1);
+            System.arraycopy(storage, posIndex, storage, posIndex + 1, size - posIndex);
         }
         storage[posIndex] = resume;
     }
