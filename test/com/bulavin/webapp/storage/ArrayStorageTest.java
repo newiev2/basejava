@@ -4,33 +4,69 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArrayStorageTest {
+class ArrayStorageTest extends AbstractArrayStorageTest {
 
-    @Test
-    void save() {
+    ArrayStorageTest() {
+        super(new ArrayStorage());
     }
 
     @Test
-    void get() {
+    public void testGetSize() {
+        super.testGetSize();
     }
 
     @Test
-    void delete() {
+    public void testClear() {
+        super.testClear();
     }
 
     @Test
-    void testSave() {
+    public void testSave() {
+        super.testSave();
     }
 
     @Test
-    void testGet() {
+    public void testSaveExisted() {
+        super.testSaveExisted();
     }
 
     @Test
-    void update() {
+    public void testSaveStorageOverflow() {
+        super.testSaveStorageOverflow();
     }
 
     @Test
-    void testDelete() {
+    public void testGet() {
+        super.testGet();
+    }
+
+    @Test
+    public void testGetNotExisted() {
+        super.testGetNotExisted();
+    }
+
+    @Test
+    public void testUpdate() {
+        super.testUpdate();
+    }
+
+    @Test
+    public void testUpdateNotExisted() {
+        super.testUpdateNotExisted();
+    }
+
+    @Test
+    public void testDelete() {
+        super.testDelete();
+    }
+
+    @Test
+    public void testDeleteNotExisted() {
+        super.testDeleteNotExisted();
+    }
+
+    @Test
+    public void testGetAll() {
+        super.testGetAll();
     }
 }
