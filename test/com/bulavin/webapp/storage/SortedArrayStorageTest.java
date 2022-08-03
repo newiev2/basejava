@@ -10,61 +10,61 @@ class SortedArrayStorageTest extends AbstractArrayStorageTest {
 
     @Test
     public void testGetSize() {
-        super.testGetSize();
+        super.size();
     }
 
     @Test
     public void testClear() {
-        super.testClear();
+        super.clear();
     }
 
     @Test
     public void testSave() {
-        super.testSave();
+        super.save();
     }
 
     @Test
-    public void testSaveExisted() {
-        super.testSaveExisted();
+    public void testSaveExisting() {
+        super.saveExisting();
     }
 
     @Test
-    public void testSaveStorageOverflow() {
-        super.testSaveStorageOverflow();
+    public void testSaveOverflow() {
+        super.saveOverflow();
     }
 
     @Test
     public void testGet() {
-        super.testGet();
+        super.get();
     }
 
     @Test
-    public void testGetNotExisted() {
-        super.testGetNotExisted();
+    public void testGetNotExisting() {
+        super.getNotExisting();
     }
 
     @Test
     public void testUpdate() {
-        super.testUpdate();
+        super.update();
     }
 
     @Test
-    public void testUpdateNotExisted() {
-        super.testUpdateNotExisted();
+    public void testUpdateNotExisting() {
+        super.updateNotExisting();
     }
 
     @Test
     public void testDelete() {
-        super.testDelete();
+        super.delete();
     }
 
     @Test
-    public void testDeleteNotExisted() {
-        super.testDeleteNotExisted();
+    public void testDeleteNotExisting() {
+        super.deleteNotExisting();
     }
 
     @Test
     public void testGetAll() {
-        super.testGetAll();
+        super.getAll();
     }
 }

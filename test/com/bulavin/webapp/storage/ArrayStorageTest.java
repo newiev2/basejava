@@ -2,8 +2,6 @@ package com.bulavin.webapp.storage;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ArrayStorageTest extends AbstractArrayStorageTest {
 
     ArrayStorageTest() {
@@ -12,61 +10,61 @@ class ArrayStorageTest extends AbstractArrayStorageTest {
 
     @Test
     public void testGetSize() {
-        super.testGetSize();
+        super.size();
     }
 
     @Test
     public void testClear() {
-        super.testClear();
+        super.clear();
     }
 
     @Test
     public void testSave() {
-        super.testSave();
+        super.save();
     }
 
     @Test
     public void testSaveExisted() {
-        super.testSaveExisted();
+        super.saveExisting();
     }
 
     @Test
     public void testSaveStorageOverflow() {
-        super.testSaveStorageOverflow();
+        super.saveOverflow();
     }
 
     @Test
     public void testGet() {
-        super.testGet();
+        super.get();
     }
 
     @Test
-    public void testGetNotExisted() {
-        super.testGetNotExisted();
+    public void testGetNotExisting() {
+        super.getNotExisting();
     }
 
     @Test
     public void testUpdate() {
-        super.testUpdate();
+        super.update();
     }
 
     @Test
-    public void testUpdateNotExisted() {
-        super.testUpdateNotExisted();
+    public void testUpdateNotExisting() {
+        super.updateNotExisting();
     }
 
     @Test
     public void testDelete() {
-        super.testDelete();
+        super.delete();
     }
 
     @Test
-    public void testDeleteNotExisted() {
-        super.testDeleteNotExisted();
+    public void testDeleteNotExisting() {
+        super.deleteNotExisting();
     }
 
     @Test
     public void testGetAll() {
-        super.testGetAll();
+        super.getAll();
     }
 }
