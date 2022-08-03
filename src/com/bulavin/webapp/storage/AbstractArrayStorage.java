@@ -13,6 +13,10 @@ public abstract class AbstractArrayStorage implements Storage {
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size;
 
+    public final int getStorageLimit() {
+        return STORAGE_LIMIT;
+    }
+
     public final int getSize() {
         return size;
     }
