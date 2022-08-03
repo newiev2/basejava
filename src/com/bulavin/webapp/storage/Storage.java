@@ -4,6 +4,8 @@ import com.bulavin.webapp.model.Resume;
 
 public interface Storage {
 
+    int getStorageLimit();
+
     int getSize();
 
     void clear();
