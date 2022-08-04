@@ -48,8 +48,7 @@ public abstract class AbstractArrayStorageTest {
     public void save() {
         storage.save(RESUME_4);
         assertSize(4);
-        Resume[] resumes = {RESUME_1, RESUME_2, RESUME_3, RESUME_4};
-        Assertions.assertArrayEquals(resumes, storage.getAll());
+        assertSameResume(RESUME_4);
     }
 
     @Test
