@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 public abstract class AbstractArrayStorageTest {
 
-    private static final int STORAGE_LIMIT = 10000;
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
     private static final String UUID_3 = "uuid3";
@@ -20,7 +19,7 @@ public abstract class AbstractArrayStorageTest {
     private static final Resume RESUME_3 = new Resume(UUID_3);
     private static final Resume RESUME_4 = new Resume(UUID_4);
 
-    private static Storage storage;
+    private Storage storage;
 
     protected AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
