@@ -1,8 +1,6 @@
 package com.bulavin.webapp.storage;
 
-import org.junit.jupiter.api.Test;
-
-class ArrayStorageTest extends AbstractArrayStorageTest {
+class ArrayStorageTest extends AbstractStorageTest {
 
     ArrayStorageTest() {
         super(new ArrayStorage());
