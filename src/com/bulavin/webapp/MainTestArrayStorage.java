@@ -23,19 +23,19 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(resume4);
         ARRAY_STORAGE.save(resume5);
 
-        //ARRAY_STORAGE.update(resume1, "uuid2");
-        //System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid18"));
-        //System.out.println("Size: " + ARRAY_STORAGE.getSize());
-        //System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
+        ARRAY_STORAGE.update(resume1);
+        System.out.println("Get resume3: " + ARRAY_STORAGE.get("uuid18"));
+        System.out.println("Size: " + ARRAY_STORAGE.size());
+        System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
         printAll();
-        //ARRAY_STORAGE.delete("uuid1");
-        //System.out.println("Get resume9: " + ARRAY_STORAGE.get("uuid9"));
-        //printAll();
-        //ARRAY_STORAGE.clear();
-        //printAll();
+        ARRAY_STORAGE.delete("uuid1");
+        System.out.println("Get resume9: " + ARRAY_STORAGE.get("uuid9"));
+        printAll();
+        ARRAY_STORAGE.clear();
+        printAll();
 
-        System.out.println("Size: " + ARRAY_STORAGE.getSize());
+        System.out.println("Size: " + ARRAY_STORAGE.size());
     }
 
     static void printAll() {
