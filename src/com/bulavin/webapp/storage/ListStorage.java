@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ListStorage extends AbstractStorage {
 
-    private final List<Resume> storage = new ArrayList<Resume>();
+    private final List<Resume> storage = new ArrayList<>();
 
     @Override
     protected void saveResume(Resume resume, Object index) {
@@ -30,21 +30,6 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public void clear() {
-        storage.clear();
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return (storage.toArray(new Resume[storage.size()]));
-    }
-
-    @Override
-    public int size() {
-        return storage.size();
-    }
-
-    @Override
     protected boolean isExisting(Object index) {
         return (Integer) index >= 0;
     }
@@ -57,5 +42,20 @@ public class ListStorage extends AbstractStorage {
             }
         }
         return -1;
+    }
+
+    @Override
+    public void clear() {
+        storage.clear();
+    }
+
+    @Override
+    public Resume[] getAll() {
+        return (storage.toArray(new Resume[0]));
+    }
+
+    @Override
+    public int size() {
+        return storage.size();
     }
 }
