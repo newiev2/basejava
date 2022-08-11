@@ -110,7 +110,7 @@ public abstract class AbstractStorageTest {
     @Test
     public void getAll() {
         Resume[] resumes = {RESUME_1, RESUME_2, RESUME_3};
-        Assertions.assertArrayEquals(storage.getAll(), resumes);
+        Assertions.assertArrayEquals(resumes, storage.getAll());
     }
 
     private void assertSize(int expectedNum) {
