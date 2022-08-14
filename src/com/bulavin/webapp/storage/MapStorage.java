@@ -2,41 +2,40 @@ package com.bulavin.webapp.storage;
 
 import com.bulavin.webapp.model.Resume;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MapStorage extends AbstractStorage {
 
-    private final Map<Object, Resume> storage = new HashMap<>();
+    private final Map<String, Resume> storage = new HashMap<>();
 
     @Override
     protected void saveResume(Resume resume, Object searchKey) {
-        storage.put(searchKey, resume);
+        storage.put((String) searchKey, resume);
     }
 
     @Override
     protected Resume getResume(Object searchKey) {
-        return storage.get(searchKey);
+        return storage.get((String) searchKey);
     }
 
     @Override
     protected void updateResume(Resume resume, Object searchKey) {
-        storage.put(searchKey, resume);
+        storage.put((String) searchKey, resume);
     }
 
     @Override
     protected void deleteResume(Object searchKey) {
-        storage.remove(searchKey);
+        storage.remove((String) searchKey);
     }
 
     @Override
     protected boolean isExisting(Object searchKey) {
-        return storage.containsKey(searchKey);
+        return storage.containsKey((String) searchKey);
     }
 
     @Override
-    protected Object findSearchKey(String uuid) {
+    protected String findSearchKey(String uuid) {
         return uuid;
     }
 
@@ -47,17 +46,11 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     public Resume[] getAll() {
-        Resume[] resumes = storage.values().toArray(new Resume[0]);
-        Arrays.sort(resumes);
-        return resumes;
+        return storage.values().toArray(new Resume[0]);
     }
 
     @Override
     public int size() {
-        int size = 0;
-        for (Object key: storage.keySet()) {
-            size++;
-        }
-        return size;
+        return storage.size();
     }
 }
