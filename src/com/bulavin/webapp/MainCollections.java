@@ -26,9 +26,9 @@ public class MainCollections {
 
         for (Resume r : collection) {
             System.out.println(r);
-            if (Objects.equals(r.getUuid(), UUID_1)) {
-//                collection.remove(r);
-            }
+            // if (Objects.equals(r.getUuid(), UUID_1)) {
+                // collection.remove(r);
+            // }
         }
 
         Iterator<Resume> iterator = collection.iterator();
@@ -55,5 +55,9 @@ public class MainCollections {
         for (Map.Entry<String, Resume> entry : map.entrySet()) {
             System.out.println(entry.getValue());
         }
+
+        List<Resume> resumes = Arrays.asList(RESUME_1, RESUME_2, RESUME_3);
+        resumes.remove(1);
+        System.out.println(resumes);
     }
 }

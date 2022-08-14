@@ -3,8 +3,16 @@ package com.bulavin.webapp.storage;
 import com.bulavin.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
+
+    private static final Comparator<Resume> RESUME_COMPARATOR = new Comparator<Resume>() {
+        @Override
+        public int compare(Resume o1, Resume o2) {
+            return o1.getUuid().compareTo(o2.getUuid());
+        }
+    };
 
     @Override
     protected void addElement(Resume resume, int index) {
@@ -23,6 +31,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     @Override
     protected Integer findSearchKey(String uuid) {
         Resume key = new Resume(uuid);
-        return Arrays.binarySearch(storage, 0, size, key);
+        return Arrays.binarySearch(storage, 0, size, key, RESUME_COMPARATOR);
     }
 }
