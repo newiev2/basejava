@@ -4,7 +4,13 @@ import com.bulavin.webapp.exception.ExistsStorageException;
 import com.bulavin.webapp.exception.NotExistsStorageException;
 import com.bulavin.webapp.model.Resume;
 
+import java.util.Comparator;
+import java.util.List;
+
 public abstract class AbstractStorage implements Storage {
+
+    protected final static Comparator<Resume> RESUME_COMPARATOR = (Comparator.comparing(Resume::getFullName))
+            .thenComparing(Resume::getUuid);
 
     public final void save(Resume resume) {
         Object searchKey = getNotExistingSearchKey(resume.getUuid());
@@ -25,6 +31,12 @@ public abstract class AbstractStorage implements Storage {
         Object searchKey = getExistingSearchKey(uuid);
         deleteResume(searchKey);
 
+    }
+
+    public final List<Resume> getAllSorted() {
+        List<Resume> resumeList = getAllElements();
+        resumeList.sort(RESUME_COMPARATOR);
+        return resumeList;
     }
 
     private Object getNotExistingSearchKey(String uuid) {
@@ -50,6 +62,8 @@ public abstract class AbstractStorage implements Storage {
     protected abstract void updateResume(Resume resume, Object searchKey);
 
     protected abstract void deleteResume(Object searchKey);
+
+    protected abstract List<Resume> getAllElements();
 
     protected abstract boolean isExisting(Object searchKey);
 
