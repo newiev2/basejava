@@ -30,6 +30,11 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
+    protected List<Resume> getAllElements() {
+        return storage;
+    }
+
+    @Override
     protected boolean isExisting(Object index) {
         return (Integer) index >= 0;
     }
@@ -47,11 +52,6 @@ public class ListStorage extends AbstractStorage {
     @Override
     public void clear() {
         storage.clear();
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return storage.toArray(new Resume[0]);
     }
 
     @Override

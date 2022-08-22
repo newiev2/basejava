@@ -4,6 +4,7 @@ import com.bulavin.webapp.exception.StorageException;
 import com.bulavin.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
 
@@ -38,14 +39,15 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public final void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
+    protected List<Resume> getAllElements() {
+        Resume[] resumes = Arrays.copyOf(storage, size);
+        return Arrays.asList(resumes);
     }
 
     @Override
-    public final Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
+    public final void clear() {
+        Arrays.fill(storage, 0, size, null);
+        size = 0;
     }
 
     @Override
