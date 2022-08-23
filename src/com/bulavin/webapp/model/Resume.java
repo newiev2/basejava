@@ -12,12 +12,16 @@ public class Resume {
     private String fullName;
 
     public Resume() {
-        this(UUID.randomUUID().toString(), null);
+        this(UUID.randomUUID().toString());
     }
 
     public Resume(String uuid, String fullName) {
         this.uuid = uuid;
         this.fullName = fullName;
+    }
+
+    public Resume(String fullName) {
+        this(UUID.randomUUID().toString(), fullName);
     }
 
     public String getUuid() {
@@ -34,10 +38,10 @@ public class Resume {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) {
+        if (this == o) {
             return true;
         }
-        if(!(o instanceof Resume)) {
+        if (!(o instanceof Resume)) {
             return false;
         }
         Resume resume = (Resume) o;
