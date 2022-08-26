@@ -6,35 +6,35 @@ import com.bulavin.webapp.model.Resume;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractArrayStorage extends AbstractStorage {
+public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
 
     protected final static int STORAGE_LIMIT = 10000;
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected static int size;
 
     @Override
-    protected void saveResume(Resume resume, Object index) {
+    protected void saveResume(Resume resume, Integer index) {
         if (size == STORAGE_LIMIT) {
             throw new StorageException(resume.getUuid(), "Storage is out of capacity");
         } else {
-            addElement(resume, (Integer) index);
+            addElement(resume, index);
             size++;
         }
     }
 
     @Override
-    protected Resume getResume(Object index) {
-        return storage[(Integer) index];
+    protected Resume getResume(Integer index) {
+        return storage[index];
     }
 
     @Override
-    protected void updateResume(Resume resume, Object index) {
-        storage[(Integer) index] = resume;
+    protected void updateResume(Resume resume, Integer index) {
+        storage[index] = resume;
     }
 
     @Override
-    protected void deleteResume(Object index) {
-        fillPosition((Integer) index);
+    protected void deleteResume(Integer index) {
+        fillPosition(index);
         size--;
     }
 
@@ -56,8 +56,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExisting(Object index) {
-        return (Integer) index >= 0;
+    protected boolean isExisting(Integer index) {
+        return  index >= 0;
     }
 
     protected abstract Integer findSearchKey(String uuid);
