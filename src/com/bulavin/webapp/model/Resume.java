@@ -1,5 +1,8 @@
 package com.bulavin.webapp.model;
 
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -7,9 +10,10 @@ import java.util.UUID;
  */
 public class Resume {
 
-    // Unique identifier
     private final String uuid;
-    private String fullName;
+    private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
+    private final Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
+    private final String fullName;
 
     public Resume() {
         this(UUID.randomUUID().toString());
@@ -32,29 +36,42 @@ public class Resume {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getContact(ContactType type) {
+        return contacts.get(type);
+    }
+
+    public void setContact(ContactType type, String contact) {
+        contacts.put(type, contact);
+    }
+
+    public Section getSection(SectionType type) {
+        return sections.get(type);
+    }
+
+    public void setSection(SectionType type, Section section) {
+        sections.put(type, section);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Resume)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof Resume)) return false;
         Resume resume = (Resume) o;
-        return uuid.equals(resume.uuid);
+        return Objects.equals(uuid, resume.uuid) && Objects.equals(contacts, resume.contacts) && Objects.equals(sections, resume.sections) && Objects.equals(fullName, resume.fullName);
     }
 
     @Override
     public int hashCode() {
-        return uuid.hashCode();
+        return Objects.hash(uuid, contacts, sections, fullName);
     }
 
     @Override
     public String toString() {
-        return uuid;
+        return "Resume{" +
+                "uuid='" + uuid + '\'' +
+                ", contacts=" + contacts +
+                ", sections=" + sections +
+                ", fullName='" + fullName + '\'' +
+                '}';
     }
 }
