@@ -1,26 +1,27 @@
 package com.bulavin.webapp.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Period {
 
-    private final String fromDate;
-    private final String endDate;
+    private final LocalDate fromDate;
+    private final LocalDate endDate;
     private final String position;
     private final String description;
 
-    public Period(String fromDate, String endDate, String position, String description) {
+    public Period(LocalDate fromDate, LocalDate endDate, String position, String description) {
         this.fromDate = fromDate;
         this.endDate = endDate;
         this.position = position;
         this.description = description;
     }
 
-    public String getFromDate() {
+    public LocalDate getFromDate() {
         return fromDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 

@@ -1,5 +1,8 @@
 package com.bulavin.webapp.model;
 
+import com.bulavin.webapp.util.DateUtil;
+
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,12 +57,16 @@ public class ResumeTestData {
         Section qualification = new ListSection("Qualification", qualificationsList);
 
         List<Period> periods1 = new ArrayList<>();
-        periods1.add(new Period("2020-01-01", "2020-02-01", "Manager", "123"));
-        periods1.add(new Period("2020-03-01", "2020-04-01", "Developer", "456"));
+        periods1.add(new Period(DateUtil.of(2020, Month.JANUARY), DateUtil.of(2020, Month.FEBRUARY),
+                "Manager", "123"));
+        periods1.add(new Period(DateUtil.of(2020, Month.MARCH), DateUtil.of(2020, Month.APRIL),
+                "Developer", "456"));
 
         List<Period> periods2 = new ArrayList<>();
-        periods2.add(new Period("2021-01-01", "2021-02-01", "Backend developer", "123"));
-        periods2.add(new Period("2021-03-01", "2021-04-01", "Frontend developer", "456"));
+        periods2.add(new Period(DateUtil.of(2020, Month.MAY), DateUtil.of(2020, Month.JUNE),
+                "Backend developer", "123"));
+        periods2.add(new Period(DateUtil.of(2020, Month.JULY), DateUtil.of(2020, Month.AUGUST),
+                "Frontend developer", "456"));
 
         List<Company> companies1 = new ArrayList<>();
         companies1.add(new Company("Wrike", "www.wrike.com", periods1));
@@ -68,11 +75,13 @@ public class ResumeTestData {
         Section experience = new CompanySection("Experience", companies1);
 
         List<Period> periods3 = new ArrayList<>();
-        periods3.add(new Period("2019-01-01", "2019-02-01", null, "'Functional " +
+        periods3.add(new Period(DateUtil.of(2019, Month.JANUARY), DateUtil.of(2019, Month.FEBRUARY), null,
+                "'Functional " +
                 "Programming Principles in Scala' by Martin Odersky"));
 
         List<Period> periods4 = new ArrayList<>();
-        periods4.add(new Period("2018-01-01", "2018-02-01", null, "Курс " +
+        periods4.add(new Period(DateUtil.of(2019, Month.MARCH), DateUtil.of(2019, Month.APRIL), null,
+                "Курс " +
                 "'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.'"));
 
         List<Company> companies2 = new ArrayList<>();
