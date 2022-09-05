@@ -1,13 +1,12 @@
 package com.bulavin.webapp;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class MainFile {
 
     public static void main(String[] args) {
-        String filePath = ".\\.gitignore";
+        String filePath = "./src/com/bulavin/webapp";
 
         File file = new File(filePath);
         try {
@@ -25,10 +24,19 @@ public class MainFile {
             }
         }
 
-        try (FileInputStream fis = new FileInputStream(filePath)) {
-            System.out.println(fis.read());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        // search with recursion
+        recursionSearch(file);
+    }
+
+    private static void recursionSearch(File file) {
+        File[] files = file.listFiles();
+        for (File f : files) {
+            if (f.isFile()) {
+                System.out.println("File: " + f.getName());
+            } else if (f.isDirectory()) {
+                System.out.println("Directory: " + f.getName());
+                recursionSearch(f);
+            }
         }
     }
 }
