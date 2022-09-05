@@ -3,6 +3,7 @@ package com.bulavin.webapp.storage;
 import com.bulavin.webapp.exception.ExistsStorageException;
 import com.bulavin.webapp.exception.NotExistsStorageException;
 import com.bulavin.webapp.model.Resume;
+import com.bulavin.webapp.model.ResumeTestData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,14 +15,15 @@ import static com.bulavin.webapp.storage.AbstractStorage.RESUME_COMPARATOR;
 
 public abstract class AbstractStorageTest {
 
+    private static final ResumeTestData RESUME_TEST_DATA = new ResumeTestData();
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
     private static final String UUID_3 = "uuid3";
     private static final String UUID_4 = "uuid4";
-    private static final Resume RESUME_1 = new Resume(UUID_1, "Nikita");
-    private static final Resume RESUME_2 = new Resume(UUID_2, "Andrey");
-    private static final Resume RESUME_3 = new Resume(UUID_3, "Nikita");
-    private static final Resume RESUME_4 = new Resume(UUID_4, "Nikita");
+    private static final Resume RESUME_1 = RESUME_TEST_DATA.getMockResume(UUID_1, "Nikita");
+    private static final Resume RESUME_2 = RESUME_TEST_DATA.getMockResume(UUID_2, "Andrey");
+    private static final Resume RESUME_3 = RESUME_TEST_DATA.getMockResume(UUID_3, "Pavel");
+    private static final Resume RESUME_4 = RESUME_TEST_DATA.getMockResume(UUID_4, "Nikita");
 
     protected final Storage storage;
 
