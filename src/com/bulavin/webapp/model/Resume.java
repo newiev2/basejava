@@ -11,9 +11,9 @@ import java.util.UUID;
 public class Resume {
 
     private final String uuid;
+    private final String fullName;
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
     private final Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
-    private final String fullName;
 
     public Resume() {
         this(UUID.randomUUID().toString());
@@ -69,9 +69,9 @@ public class Resume {
     public String toString() {
         return "Resume{" +
                 "uuid='" + uuid + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", contacts=" + contacts +
                 ", sections=" + sections +
-                ", fullName='" + fullName + '\'' +
                 '}';
     }
 }
