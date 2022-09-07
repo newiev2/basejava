@@ -4,6 +4,7 @@ import com.bulavin.webapp.exception.StorageException;
 import com.bulavin.webapp.model.Resume;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         try {
             searchKey.createNewFile();
             writeData(resume, searchKey);
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new StorageException(searchKey.getName(), "Error occurred while trying to save resume", e);
         }
     }
@@ -37,7 +38,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected Resume getResume(File searchKey) {
         try {
             return readData(searchKey);
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new StorageException(searchKey.getName(), "Error occurred while trying to get resume", e);
         }
     }
@@ -46,17 +47,15 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected void updateResume(Resume resume, File searchKey) {
         try {
             writeData(resume, searchKey);
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new StorageException(searchKey.getName(), "Error occurred while trying to update resume", e);
         }
     }
 
     @Override
     protected void deleteResume(File searchKey) {
-        try {
-            searchKey.delete();
-        } catch (Exception e) {
-            throw new StorageException(searchKey.getName(), "Error occurred while trying to delete resume", e);
+        if (!searchKey.delete()) {
+            throw new StorageException(searchKey.getName(), "Error occurred while trying to delete resume");
         }
     }
 
@@ -66,7 +65,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         if (files != null) {
             List<Resume> resumes = new ArrayList<>();
             for (File file : files) {
-                resumes.add(readData(file));
+                resumes.add(getResume(file));
             }
             return resumes;
         } else throw new StorageException("Error occurred while trying to get all resumes");
@@ -101,7 +100,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         return 0;
     }
 
-    protected abstract void writeData(Resume resume, File file);
+    protected abstract void writeData(Resume resume, File file) throws IOException;
 
-    protected abstract Resume readData(File file);
+    protected abstract Resume readData(File file) throws IOException;
 }
