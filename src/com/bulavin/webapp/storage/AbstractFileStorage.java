@@ -68,7 +68,9 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
                 resumes.add(getResume(file));
             }
             return resumes;
-        } else throw new StorageException("Error occurred while trying to get all resumes");
+        } else {
+            throw new StorageException("Error occurred while trying to get all resumes");
+        }
     }
 
     @Override
@@ -88,7 +90,9 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
             for (File file : files) {
                 deleteResume(file);
             }
-        } else throw new StorageException("Directory is empty. Nothing to clear");
+        } else {
+            throw new StorageException("Directory is empty. Nothing to clear");
+        }
     }
 
     @Override
