@@ -1,5 +1,6 @@
 package com.bulavin.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,9 +9,9 @@ public class CompanySection extends Section {
     private final String title;
     private final List<Company> companies;
 
-    public CompanySection(String title, List<Company> companies) {
+    public CompanySection(String title, Company... companies) {
         this.title = title;
-        this.companies = companies;
+        this.companies = Arrays.asList(companies);
     }
 
     public String getTitle() {

@@ -1,5 +1,6 @@
 package com.bulavin.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,9 +9,9 @@ public class ListSection extends Section {
     private final String title;
     private final List<String> contents;
 
-    public ListSection(String title, List<String> contents) {
+    public ListSection(String title, String... contents) {
         this.title = title;
-        this.contents = contents;
+        this.contents = Arrays.asList(contents);
     }
 
     public String getTitle() {
